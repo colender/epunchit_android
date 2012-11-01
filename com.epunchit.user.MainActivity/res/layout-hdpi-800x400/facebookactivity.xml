@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" 
+	android:background="@drawable/white"
+>
+
+    <com.epunchit.user.LoginButton
+        android:id="@+id/login"
+        android:src="@drawable/fblogin_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_margin="30dp"
+        android:layout_gravity="center_horizontal"
+        />
+
+	<TextView android:id="@+id/eventPlace" 
+        android:text="Place:"
+        android:textColor="@drawable/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+		/>
+
+	<TextView android:id="@+id/eventDate" 
+        android:text="Date:"
+        android:textColor="@drawable/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+		/>
+		<TextView android:id="@+id/eventStartTime" 
+        android:text="Start Time:"
+        android:textColor="@drawable/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+		/>
+		<TextView android:id="@+id/eventEndTime" 
+        android:text="End Time:"
+        android:textColor="@drawable/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+		/>
+		
+		<TextView android:id="@+id/eventLocation" 
+        android:text="Location:"
+        android:textColor="@drawable/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+		/>
+			
+	<Button android:id="@+id/postButton" 
+        android:text="Invite Friends"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_gravity="center_horizontal"
+		/>
+</LinearLayout>

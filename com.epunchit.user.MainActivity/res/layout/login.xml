@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loginView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+>
+
+<ImageView android:id="@+id/header" 
+    android:background="@drawable/header"
+		android:layout_width="match_parent" 
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+ />
+    
+    <TextView
+        android:id="@+id/lblUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#444444"
+        android:text="User Name:"
+        android:layout_below="@id/header"
+        />
+    <EditText
+        android:id="@+id/txtUserName"
+        android:inputType="textEmailAddress"
+        android:hint="Your Email Address"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_toRightOf="@id/lblUserName"
+        android:layout_marginLeft="20dp"
+        android:layout_alignBaseline="@id/lblUserName"
+       android:layout_below="@id/header"
+         />
+     <TextView
+        android:id="@+id/lblPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#444444"
+        android:text="Password:"
+        android:layout_below="@id/txtUserName"
+        />
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_alignLeft="@id/txtUserName"
+        android:layout_below="@id/txtUserName"
+        android:layout_alignBaseline="@id/lblPassword"
+        android:inputType="textPassword"
+        />
+    
+    <CheckBox 
+        android:id="@+id/chkRememberMe"
+        android:text="Remember Me"
+        android:textSize="12sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/lblPassword"
+        android:layout_alignLeft="@id/lblPassword"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    />
+    
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Login" 
+        android:layout_below="@id/chkRememberMe"
+        android:layout_alignLeft="@id/lblPassword"
+        android:layout_marginTop="10dp"
+        />
+    <Button
+        android:id="@+id/btn_forgot"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password"
+        android:layout_toRightOf="@id/btn_login"
+        android:layout_alignBottom="@id/btn_login"
+        android:layout_marginLeft="5dp"
+        android:onClick="forgotPasswordHandler"
+        />
+    
+    <Button
+        android:id="@+id/btn_create"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="New User" 
+        android:layout_toRightOf="@id/btn_forgot"
+        android:layout_alignBottom="@id/btn_login"
+        android:layout_marginLeft="5dp"
+        android:onClick="createNewUserHandler"
+        />
+    
+    
+    <TextView
+        android:id="@+id/txtError"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="14sp"
+        android:textColor="#AA0000"
+        android:layout_below="@id/btn_login"
+        android:layout_centerHorizontal="true"
+        android:text=""/>
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/placeordermenuview2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu_order2"
+>
+<LinearLayout
+android:id="@+id/footer" 
+android:orientation="horizontal"
+android:layout_width="match_parent" 
+android:layout_height="70dp" 
+android:layout_alignParentBottom="true"
+>
+
+<Button
+android:id="@+id/btnScan"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:layout_weight="1.0"
+android:onClick="ScanButtonHandler" 
+			android:background="@android:color/transparent"
+/>
+    
+<Button
+android:id="@+id/btnHome"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="HomeButtonHandler" 
+android:layout_weight="1.0"       
+			android:background="@android:color/transparent"
+/>
+    
+
+<Button
+android:id="@+id/btnShowList"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="SelectMenuHandler" 
+			android:background="@android:color/transparent"
+android:layout_weight="1.0"       
+/>
+
+<Button
+android:id="@+id/btnBack"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="BackButtonHandler" 
+android:layout_weight="1.0"      
+android:background="@android:color/transparent" 
+/>
+
+</LinearLayout>
+    
+</RelativeLayout>

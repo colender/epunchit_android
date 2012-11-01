@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/epplacesDetailsView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+>
+<ImageView android:id="@+id/header" 
+    android:background="@drawable/header"
+		android:layout_width="match_parent" 
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+ />
+
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/placeNameLayout" 
+android:orientation="horizontal"
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:layout_below="@id/header"
+	android:layout_marginLeft="10dp"
+	android:layout_marginRight="10dp"
+>
+
+<ImageView android:id="@+id/placeLogo" 
+	android:layout_width="80dp" 
+	android:layout_height="80dp"
+ />
+
+<TextView 
+    android:id="@+id/placeName"
+    android:textSize="15sp"
+    android:textStyle="bold"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@android:color/black"
+	android:paddingLeft="5dp"
+/>
+
+</LinearLayout>
+
+<TextView 
+    android:id="@+id/placeFollowing"
+    android:textSize="15sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@android:color/black"
+	android:layout_marginLeft="10dp"
+	android:layout_marginRight="10dp"
+	android:layout_below="@+id/placeNameLayout"
+    />
+
+<TextView 
+    android:id="@+id/placeDesc"
+    android:textSize="15sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="@android:color/black"
+	android:layout_marginLeft="10dp"
+	android:layout_marginRight="10dp"
+	android:layout_below="@+id/placeFollowing"
+/>
+
+
+<LinearLayout
+android:id="@+id/placeAddressLayout" 
+android:orientation="horizontal"
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:layout_below="@id/placeDesc"
+	android:layout_marginLeft="10dp"
+	android:layout_marginRight="10dp"
+>
+
+<TextView 
+    android:id="@+id/lblAddress"
+    android:text="Address:"
+    android:textColor="@android:color/black"
+    android:textSize="15sp"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:layout_weight="1.20"
+/>
+<TextView 
+    android:id="@+id/placeAddress"
+	android:autoLink="map"  
+    android:textColor="@android:color/black"
+    android:textSize="15sp"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:layout_weight="0.70"
+/>
+<Button
+android:id="@+id/btnDirections"
+android:text="Directions"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="ShowDirectionsHandler" 
+android:layout_weight="1.10"    
+android:background="@drawable/uni_button"   
+/>
+</LinearLayout>
+
+<LinearLayout
+android:id="@+id/placePhoneLayout" 
+android:orientation="horizontal"
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:layout_below="@id/placeAddressLayout"
+	android:layout_marginLeft="10dp"
+	android:layout_marginRight="10dp"
+>
+
+<TextView 
+    android:id="@+id/lblPhone"
+    android:text="Phone:"
+    android:textColor="@android:color/black"
+    android:textSize="15sp"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:layout_weight="1.20"
+/>
+	<TextView 
+	    android:id="@+id/placePhone"
+	    android:autoLink="phone" 
+	    android:textSize="15sp" 
+	    android:textColor="@android:color/black"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:layout_weight="0.70"
+	/>
+<Button
+android:id="@+id/btnCall"
+android:text="Call"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="PhoneCallHandler" 
+android:layout_weight="1.10"   
+android:background="@drawable/uni_button"   
+/>
+</LinearLayout>
+
+<LinearLayout
+android:id="@+id/placeReviewsLayout" 
+android:orientation="horizontal"
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:layout_below="@id/placePhoneLayout"
+android:visibility="invisible"
+>
+
+<TextView 
+    android:id="@+id/lblReviews"
+    android:text="Reviews:"
+    android:textColor="@android:color/black"
+    android:textSize="15sp"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:layout_weight="1.5"
+/>
+<TextView 
+    android:id="@+id/placeReviews"
+    android:textColor="@android:color/black"
+    android:textSize="15sp"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.5"
+/>
+</LinearLayout>
+<LinearLayout
+android:id="@+id/placeSpecialsLayout" 
+android:orientation="horizontal"
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:layout_below="@id/placeReviewsLayout"
+android:visibility="invisible"
+>
+<TextView 
+    android:id="@+id/lblSpecials"
+    android:text="Specials:"
+    android:textColor="@android:color/black"
+    android:textSize="15sp"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:layout_weight="1.5"
+/>
+
+<TextView 
+    android:id="@+id/placeSpecials"
+    android:textColor="@android:color/black"
+    android:textSize="15sp"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.5"
+/>
+</LinearLayout>
+
+<LinearLayout
+android:id="@+id/footer" 
+android:orientation="horizontal"
+android:layout_width="match_parent" 
+android:layout_height="80dp" 
+android:layout_alignParentBottom="true"
+>
+
+<Button
+android:id="@+id/btnMenu"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="MenuButtonHandler" 
+android:background="@drawable/menu"       
+android:layout_weight="1.0"       
+/>
+    
+<Button
+android:id="@+id/btnHome"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="HomeButtonHandler" 
+android:background="@drawable/home"       
+android:layout_weight="1.0"       
+/>
+    
+
+<Button
+android:id="@+id/btnPlaces"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="PlacesButtonHandler"    
+android:background="@drawable/places"       
+android:layout_weight="1.0"       
+/>
+
+<Button
+android:id="@+id/btnInvite"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="InviteButtonHandler" 
+android:background="@drawable/invite"       
+android:layout_weight="1.0"       
+/>
+
+</LinearLayout>
+</RelativeLayout>
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<string-array name="link_action_dialog_items">
+		<item>Open</item>
+		<item>Add bookmark</item>
+		<item>Share link</item>
+		<item>Copy link url</item>
+		<item>Remove from places</item>
+	</string-array>
+
+	<string-array name="places_action_dialog_items">
+		<item>Open</item>
+		<item>Share</item>
+		<item>Remove</item>
+	</string-array>
+	    	    
+	    <string-array name="incidents_array">
+        <item>Accident</item>
+        <item>Violence</item>
+        <item>Robbery</item>
+        <item>Danger</item>
+        <item>Suspicious Activity</item>
+        <item>Abduction</item>
+    </string-array>
+    <string-array name="locations_array">
+        <item>Street</item>
+        <item>Restaurant</item>
+        <item>Office building</item>
+        <item>House</item>
+        <item>Apartments</item>
+        <item>Intersection</item>
+        <item>Mall</item>
+    </string-array>
+    <string-array name="category_array">
+        <item>Hospital</item>
+        <item>Police</item>
+        <item>Doctor</item>
+        <item>Pharmacy</item>
+        <item>Gas_Station</item>
+        <item>ATM</item>
+        <item>Towing</item>
+        <item>AAA</item>
+        <item>Taxi_Stand</item>
+    </string-array>
+    <string-array name="radius_array">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>7</item>
+        <item>10</item>
+    </string-array>
+</resources>

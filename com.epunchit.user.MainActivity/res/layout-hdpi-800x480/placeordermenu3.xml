@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/placeordermenuview3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu_order3"
+>
+<LinearLayout
+android:id="@+id/footer" 
+android:orientation="horizontal"
+android:layout_width="match_parent" 
+android:layout_height="70dp" 
+android:layout_alignParentBottom="true"
+>
+
+<Button
+android:id="@+id/btnScan"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:layout_weight="1.1"
+android:onClick="ScanButtonHandler" 
+			android:background="@android:color/transparent"
+/>
+
+<Button
+android:id="@+id/btnPurchase"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="PurchaseButtonHandler" 
+			android:background="@android:color/transparent"
+android:layout_weight="0.8"       
+/>
+
+<Button
+android:id="@+id/btnBack"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:onClick="BackButtonHandler" 
+android:layout_weight="1.1"      
+android:background="@android:color/transparent" 
+/>
+
+</LinearLayout>
+</RelativeLayout>

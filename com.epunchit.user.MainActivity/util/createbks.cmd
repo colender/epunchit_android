@@ -1,0 +1,1 @@
+keytool -importcert -v -trustcacerts -file ./epunchit.pem -alias epunchit  -keystore ../res/raw/epunchit.bks  -provider org.bouncycastle.jce.provider.BouncyCastleProvider  -providerpath ./bcprov-jdk16-146.jar  -storetype BKS  -storepass oside6023

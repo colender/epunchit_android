@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settingsView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+>
+
+<ImageView android:id="@+id/header" 
+    android:background="@drawable/header"
+		android:layout_width="match_parent" 
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+ />
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#444444"
+        android:text="Change Password:"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/header"
+        />
+
+
+    <TextView
+        android:id="@+id/lblOldPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#444444"
+        android:text="Old Password:"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/lblTitle"
+        />
+    <EditText
+        android:id="@+id/txtOldPassword"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_toRightOf="@id/lblOldPassword"
+        android:layout_marginLeft="20dp"
+        android:layout_alignBaseline="@id/lblOldPassword"
+       android:layout_below="@id/lblTitle"
+        android:inputType="textPassword"
+         />
+     <TextView
+        android:id="@+id/lblPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#444444"
+        android:text="New Password:"
+        android:layout_below="@id/lblOldPassword"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_below="@id/txtOldPassword"
+        android:layout_alignLeft="@id/txtOldPassword"
+        android:inputType="textPassword"
+        android:layout_marginTop="20dp"
+        />
+
+     <TextView
+        android:id="@+id/lblCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:text="City:"
+        android:layout_below="@id/txtPassword"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/txtCity"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_gravity="center"
+        android:layout_below="@id/lblCity"
+        android:layout_marginTop="20dp"
+        />
+    
+     <TextView
+        android:id="@+id/lblState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#444444"
+        android:text="State:"
+        android:layout_below="@id/txtCity"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/txtState"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:layout_gravity="center"
+        android:layout_below="@id/lblState"
+        android:layout_marginTop="20dp"
+        
+        />
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Save" 
+        android:layout_below="@id/txtPassword"
+        android:layout_alignLeft="@id/txtPassword"
+        android:layout_marginTop="10dp"
+        />
+     <TextView
+        android:id="@+id/txtError"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="14sp"
+        android:textColor="#AA0000"
+        android:layout_below="@id/btn_save"
+        android:layout_centerHorizontal="true"
+        android:text=""/>
+</RelativeLayout>
