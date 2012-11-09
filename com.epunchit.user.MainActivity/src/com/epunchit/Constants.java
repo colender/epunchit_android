@@ -5,7 +5,7 @@ public final class Constants {
 	public static final String API_KEY = "AIzaSyBrk2L5MkIWmIT-3VWNzPwVVFs-47dsLvU";
 	public static final String APP_NAME = "epunchit";
 	public static final String ACCOUNT_NAME = "user";
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = true;
 	public static final String BASE_URL_PATH = "http://www.epunchit.com";
 	public static final String BASE_IMAGE_PATH = "https://www.epunchit.com/img/faces/";
 	
@@ -36,4 +36,5 @@ public final class Constants {
 	public static final String EP_USER_FAVORITE_PLACES_PATH = 
 		"https://epunchit.com/ajax/userGetFollowing-ajax.php";
 	public static final String EP_QRCODE_UPDATE_PATH = "https://epunchit.com/mobile/qrmobile.php?";
+	public static final String EP_QRCODE_REDEEM_PATH = "https://epunchit.com/mobile/qrredeem.php";
 }

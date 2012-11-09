@@ -113,6 +113,8 @@ public class RESTClientService extends IntentService {
             switch (verb) {
             	case GET: {
                     response = makeGetRequest(action.toString(), paramsToList(params));
+                    Log.d("RestClientService:",action.toString());
+                    Log.d("RestClientservice:",response.toString());
             		break;
             	}
             	case PUT: {
@@ -136,7 +138,7 @@ public class RESTClientService extends IntentService {
            			resultData.putString(REST_RESPONSE, EntityUtils.toString(responseEntity, HTTP.UTF_8));
            			if(receiver != null) {
                         Log.d("RESTClientService", "RESTClientService...calling result receiver");
-
+                        Log.d("RESTClientServer",resultData.getString(REST_RESPONSE));
            				receiver.send(statusCode, resultData);
            			}
            			else //send an ordered broadcast

@@ -42,7 +42,7 @@ public class MainActivity extends ListActivity {
 	UserProfileResultReceiver userProfileResultReceiver	= null;
 	UserUpdateResultReceiver userUpdateResultReceiver = null;
     private ProgressDialog progressBar;
-
+    private final String TAG = "MainActivity";
 	
     /** Called when the activity is first created. */
     @Override
@@ -80,7 +80,7 @@ public class MainActivity extends ListActivity {
             	 if (scanResult != null) {
             		 String content = scanResult.getContents();
             		 String format = scanResult.getFormatName();
-            		 confirmActionDialog(content);
+            		 confirmActionDialog("Content Being Sent",content);
             	 }            	
             } else if (resultCode == RESULT_CANCELED) {
                 //handle cancel
@@ -88,11 +88,13 @@ public class MainActivity extends ListActivity {
         }
     }
     
-    public void confirmActionDialog(final String content)
+    public void confirmActionDialog(final String title,final String content)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		String title = "Please confirm:"+content;
+		String text = "Please confirm:"+content;
 		alert.setTitle(title);
+		alert.setMessage(text);
+		Log.d(TAG,content);
 		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
        		 updateUserInfo(content);			}
@@ -121,17 +123,33 @@ public class MainActivity extends ListActivity {
 	    			   place = value;
 	    		   if(key.equalsIgnoreCase("point"))
 	    			   points = value;
-	    		   if(key.equalsIgnoreCase("redeem"))
+	    		   if(key.equalsIgnoreCase("type"))
 	    			   redeem = value;
+	    		   if(key.equalsIgnoreCase("places"))
+	    			   place=value;
 	    	}
 	    	
  	        Bundle params = new Bundle();
-	    	params.putString("place", place);
-	    	params.putString("point", points);
-	    	params.putString("redeem", redeem);
- 	    	params.putString("uid", Utils.getAccountName(this));
+	    	
+	    	
+	    	params.putString("type", redeem);
+ 	    	//TODO After code is being used delete code from SharedPreference a look for a new code.
 	    	Intent intent = new Intent(this, RESTClientService.class);
-	        intent.setData(Uri.parse(EP_QRCODE_UPDATE_PATH));
+	    	Uri updatepath = null;
+	    	if(redeem.equalsIgnoreCase("redeem")){ 
+	    		updatepath = Uri.parse(EP_QRCODE_REDEEM_PATH); 
+	    		params.putString("code", Utils.getRedeemCode(this));
+	    		params.putString("userid", Utils.getAccountName(this));
+	    		params.putString("place", place);
+	    		Log.d("REDEEM:","Inside the redeem");
+	    		Log.d("Code:",Utils.getRedeemCode(this));
+	    	}else{ 
+	    		updatepath = Uri.parse(EP_QRCODE_UPDATE_PATH);
+	    		params.putString("uid", Utils.getAccountName(this));
+	    		params.putString("point", points);
+	    		params.putString("place", place);
+	    	}
+	        intent.setData(updatepath);
 	        intent.putExtra(RESTClientService.EXTRA_PARAMS, params);
 	    	userUpdateResultReceiver = new UserUpdateResultReceiver(new Handler());
 	    	userUpdateResultReceiver.setParentContext(this);
@@ -253,20 +271,23 @@ public class MainActivity extends ListActivity {
         	
    			if(resultData != null)
    			{
+   				Log.d("MaintActivtiy:","Inside receive");
    				String responseString = resultData.getString(RESTClientService.REST_RESPONSE); 
    				Log.d("MainActivity:",responseString);
    	        	try {
 					JSONObject json = new JSONObject(responseString);
 					String success = json.getString("Success");
-					if(success.equalsIgnoreCase("true"))
+					if(success.equalsIgnoreCase("true")){
+						getUserData();
 						confirmationDialog("Success","Your points have been added");
-					else {
+   	        	}else {
 						String errormsg = json.getString("Error");
 						 Log.d("UserUpdateResultReciver:error msg:", errormsg);
 						confirmationDialog("Error- Program Error",errormsg);
 						 
 					}
 				} catch (JSONException e) {
+					Log.d(TAG, e.getMessage());
 					confirmationDialog("Error","Field Does not Exist");
 				}
    			}
