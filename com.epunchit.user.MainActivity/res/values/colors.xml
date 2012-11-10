@@ -23,5 +23,5 @@
     <color name="black">#000000</color>
     <drawable name="white">#ffffff</drawable>
     <drawable name="black">#000000</drawable>
-    
+    <color name="epunchit_blue">#00adee</color>
 </resources>

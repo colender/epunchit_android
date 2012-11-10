@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" >
+    <style name="Widget.Button.Toggle" parent="android:Widget">
+        <item name="android:background">@drawable/btn_toggle_bg</item>
+        <item name="android:textOn">0</item>
+        <item name="android:textOff">Get Redeem Code</item>
+        <item name="android:disabledAlpha">0</item>
+        
+    </style>
+</resources>

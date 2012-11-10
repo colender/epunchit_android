@@ -1,21 +1,21 @@
 package com.epunchit.user;
 
-import static com.epunchit.Constants.*;
+import static com.epunchit.Constants.DEBUG;
+import static com.epunchit.Constants.EP_QRCODE_REDEEM_PATH;
+import static com.epunchit.Constants.EP_QRCODE_UPDATE_PATH;
+import static com.epunchit.Constants.EP_USER_PROFILE_PATH;
+import static com.epunchit.Constants.EP_USER_REDEEM_PLACES_PATH;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.epunchit.Constants;
-import com.epunchit.utils.LauncherUtils;
-import com.epunchit.utils.Utils;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -35,7 +35,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.epunchit.Constants;
+import com.epunchit.utils.LauncherUtils;
+import com.epunchit.utils.Utils;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends ListActivity {
 	UserPlacesResultReceiver userPlacesResultReceiver	= null;
@@ -43,7 +48,7 @@ public class MainActivity extends ListActivity {
 	UserUpdateResultReceiver userUpdateResultReceiver = null;
     private ProgressDialog progressBar;
     private final String TAG = "MainActivity";
-	
+	private boolean TOGGLEON = false;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,20 +78,90 @@ public class MainActivity extends ListActivity {
     	qrScanner.initiateScan();
     }
     
+    
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == IntentIntegrator.REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
             	 IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
             	 if (scanResult != null) {
             		 String content = scanResult.getContents();
+            		 
             		 String format = scanResult.getFormatName();
-            		 confirmActionDialog("Content Being Sent",content);
+            		 
+            		 Map<String,String> contents = parseContent(content);
+            		 
+            		 
+            		 confirmActionDialog("Content Being Sent",contents,content);
             	 }            	
             } else if (resultCode == RESULT_CANCELED) {
                 //handle cancel
             }
         }
     }
+    
+    
+    
+    public HashMap<String,String> parseContent(String content){ 
+    	String[] strPairs = content.split("&");
+    	HashMap<String,String> contents = new HashMap<String,String>();
+    	
+    	
+    	for(String kPair: strPairs){ 
+    		
+    		
+    		
+    		String[] kv = kPair.split("=");
+ 		   String key = kv[0];
+ 		   String value = kv[1];
+ 		   if(key.equals("place"))
+ 			   contents.put("place", value);
+ 		   if(key.equalsIgnoreCase("point"))
+ 			   contents.put("point", value);
+ 		   if(key.equalsIgnoreCase("type"))
+ 			   contents.put("type",value);
+ 		   if(key.equalsIgnoreCase("places"))
+ 			   contents.put("places", value);
+    		
+    		
+    	}
+    	
+    	return contents;
+    	
+    	
+    }
+    
+    
+    public void confirmActionDialog(final String title,final Map<String,String> contents,final String content)
+	{
+    	
+    	
+    	StringBuilder strB = new StringBuilder();
+		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		//String text = "Please confirm:"+content;
+		String place = "Place: " + contents.get("place") + "\n";
+		String points;
+		if(contents.get("type") != null && contents.get("type").equalsIgnoreCase("redeem")){ 
+			 points = "You are going to Redeem \n";
+		}else { 
+			points = "Points: " + contents.get("point") + "\n";
+		}
+		
+		
+		String msg = "Do you want to add point or redeem";
+		strB.append(msg+place + points);
+		alert.setTitle(title);
+		alert.setMessage(strB.toString());
+		Log.d(TAG,strB.toString());
+		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+       		 updateUserInfo(content);			}
+		});
+		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+			}
+		});
+		alert.show();
+	}
     
     public void confirmActionDialog(final String title,final String content)
 	{
@@ -138,7 +213,8 @@ public class MainActivity extends ListActivity {
 	    	Uri updatepath = null;
 	    	if(redeem.equalsIgnoreCase("redeem")){ 
 	    		updatepath = Uri.parse(EP_QRCODE_REDEEM_PATH); 
-	    		params.putString("code", Utils.getRedeemCode(this));
+	    		params.putString("code", Utils.getRedeemCode
+	    				(this));
 	    		params.putString("userid", Utils.getAccountName(this));
 	    		params.putString("place", place);
 	    		Log.d("REDEEM:","Inside the redeem");
@@ -185,9 +261,22 @@ public class MainActivity extends ListActivity {
     public void getRedeemCodeHandler(View view) {
     	String redeemCode = Utils.getRedeemCode(this);
     	Button txtView = (Button) view;
-		txtView.setText(redeemCode);
-		txtView.setTextColor(Color.RED);
-		txtView.setClickable(false);
+    	txtView.setClickable(true);
+    	if(TOGGLEON){ 
+    		txtView.setText(redeemCode);
+    		txtView.setTextColor(Color.RED);
+    		
+    		TOGGLEON = false;
+    	}else { 
+    		
+    		txtView.setText("");
+    		txtView.setTextColor(getResources().getColor(R.color.epunchit_blue));
+    		TOGGLEON = true;
+    	}
+    	
+    	
+    	
+		
     }
     
     private void getUserData()
@@ -387,9 +476,15 @@ public class MainActivity extends ListActivity {
   					txtView = (TextView) findViewById(R.id.mostVisited);
   					txtView.setText("Most Visited:"+userProfile.getString("mostVisited"));
   					String redeemCode = userProfile.getString("redeemCode");
+  					Log.d(TAG,redeemCode);
+  					Button btnView = (Button) findViewById(R.id.redeemCode);
   					if(!redeemCode.equalsIgnoreCase("0"))
   					{
-  						Button btnView = (Button) findViewById(R.id.redeemCode);
+  						
+  						btnView.setVisibility(Button.VISIBLE);
+  						btnView.setClickable(true);
+  						Utils.setRedeemCode(context, redeemCode);
+  					}else{ 
   						btnView.setVisibility(Button.VISIBLE);
   						btnView.setClickable(true);
   						Utils.setRedeemCode(context, redeemCode);
