@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+	android:layout_alignParentTop="true"
+>
+	<ImageView android:id="@+id/headerImg" 
+    android:background="@drawable/header"
+		android:layout_width="match_parent" 
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+ />
+    
+     <Button android:id="@+id/redeemCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:clickable="false"
+        android:visibility="invisible"
+        android:onClick="getRedeemCodeHandler"
+        android:layout_toLeftOf="@+id/signOut"
+        android:layout_alignBaseline="@+id/signOut"
+    android:background="@drawable/getredeem_button"
+         />       
+
+     <Button android:id="@+id/signOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:clickable="true"
+        android:onClick="onSignOutHandler"
+        android:layout_alignBottom="@id/headerImg"
+        android:layout_alignRight="@id/headerImg"
+    android:background="@drawable/signout_button"
+ 	/>       
+
+</RelativeLayout>
