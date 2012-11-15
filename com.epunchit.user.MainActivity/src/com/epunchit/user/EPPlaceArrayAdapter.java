@@ -43,7 +43,7 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
     LayoutInflater inflater = null;
     ImageLoader imageLoader = null;
     Bitmap stubIcon = null;
-
+    private final String TAG = "EPPlaceArrayAdapter";
    
     public EPPlaceArrayAdapter(Context context, int layoutResourceId) {
         super(context, layoutResourceId);
@@ -176,6 +176,7 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
         		try {
         			if(photoURL != null)
         			{
+        				Log.d(TAG,photoURL);
         				imageLoader.DisplayImage(photoURL, holder.imgIcon);
         				/*
         				Bitmap bitmapIcon = Utils.getBitmapFromURL(photoURL, context);
