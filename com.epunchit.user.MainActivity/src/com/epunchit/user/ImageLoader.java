@@ -27,6 +27,7 @@ import org.apache.http.params.HttpParams;
 
 import com.epunchit.Constants;
 import com.epunchit.utils.Utils;
+import com.facebook.android.Util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -42,7 +43,7 @@ public class ImageLoader {
     private Map<ImageView, String> imageViews=Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
     ExecutorService executorService; 
     SSLContext sslContext = null;
-    
+    private final String TAG = "ImageLoader";
     public ImageLoader(Context context){
         fileCache=new FileCache(context);
         executorService=Executors.newFixedThreadPool(5);
@@ -95,6 +96,7 @@ public class ImageLoader {
             imageView.setImageBitmap(bitmap);
         else
         {
+        	Util.logd(TAG, "bitmap is null");
             queuePhoto(url, imageView);
             imageView.setImageResource(stub_id);
         }
