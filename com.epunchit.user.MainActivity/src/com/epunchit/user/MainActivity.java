@@ -55,6 +55,9 @@ public class MainActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.main);
+        TextView codeButton = (TextView)findViewById(R.id.redeemCode);
+        codeButton.setText("Redeem Code");
+        codeButton.setTextColor(getResources().getColor(R.color.epunchit_blue));
     	if(!Utils.isUserSignedIn(this))
     	{
         	LauncherUtils.launchActivity(R.layout.login, this, null);
@@ -269,7 +272,7 @@ public class MainActivity extends ListActivity {
     		TOGGLEON = false;
     	}else { 
     		
-    		txtView.setText("");
+    		txtView.setText("Redeem Code");
     		txtView.setTextColor(getResources().getColor(R.color.epunchit_blue));
     		TOGGLEON = true;
     	}

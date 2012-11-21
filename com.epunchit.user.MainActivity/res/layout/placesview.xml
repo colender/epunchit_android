@@ -3,7 +3,7 @@
     android:id="@+id/epplacesView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#ffffff"
 >
 <ImageView android:id="@+id/header" 
     android:background="@drawable/header"

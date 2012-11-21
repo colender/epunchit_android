@@ -28,7 +28,7 @@
         android:onClick="getRedeemCodeHandler"
         android:layout_toLeftOf="@+id/signOut"
         android:layout_alignBaseline="@+id/signOut"
-    android:background="@drawable/getredeem_button"
+    	android:background="@drawable/uni_button"
          />       
 
      <Button android:id="@+id/signOut"
