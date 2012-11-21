@@ -123,6 +123,12 @@ public class EPPlace {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+	public void setActivation(boolean activate){ 
+		
+		
+	}
 
 	@Override
 	public String toString() {
