@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
+android:background="#FFFFFF"
 >
      <ImageView android:id="@+id/imgIcon"
         android:layout_width="50dp"
@@ -19,15 +20,6 @@ android:layout_height="wrap_content"
         android:paddingLeft="5dp"
         
          />       
-     <TextView android:id="@+id/txtDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:textColor="@android:color/black"
-        android:layout_toRightOf="@id/txtTitle"
-        android:paddingLeft="5dp"
-         />       
 	
 	
      <Button android:id="@+id/imgFollow"
@@ -37,6 +29,18 @@ android:layout_height="wrap_content"
    		android:background="@drawable/not_following"
         android:layout_alignParentRight="true"
         />
+
+     <TextView
+         android:id="@+id/txtDistance"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/imgFollow"
+         android:layout_alignBottom="@+id/imgFollow"
+         android:layout_alignLeft="@+id/txtTitle"
+         android:paddingLeft="5dp"
+         android:textColor="@android:color/black"
+         android:textSize="12sp"
+         android:textStyle="bold" />
          
 </RelativeLayout>
 
