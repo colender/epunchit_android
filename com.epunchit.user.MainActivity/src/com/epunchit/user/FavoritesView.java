@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import com.epunchit.Constants;
 import com.epunchit.utils.LauncherUtils;
 import com.epunchit.utils.Utils;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -66,6 +67,14 @@ public class FavoritesView extends ListActivity  {
     	LauncherUtils.launchActivity(R.layout.addplacesview, this, nvPairs);    	
     	
     }
+    
+    public void ScanButtonHandler(View view) {
+    	IntentIntegrator qrScanner = new IntentIntegrator(this);
+    	qrScanner.setTitle("Installing QR code reader");
+    	qrScanner.setMessage("Please select yes to get the QR code reader...");
+    	qrScanner.initiateScan();
+    }
+    
     
     public void PlacesButtonHandler(View view) {
     	LauncherUtils.launchActivity(R.layout.placesview, this, null);    	

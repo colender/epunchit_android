@@ -14,6 +14,7 @@ import com.epunchit.Constants;
 import com.epunchit.user.AddPlacesView.AddPlaceResultReceiver;
 import com.epunchit.utils.LauncherUtils;
 import com.epunchit.utils.Utils;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -38,7 +39,7 @@ public class PlacesView extends ListActivity  {
 	
 	PlacesSearchResultReceiver placesSearchResultReceiver	= null;
     private ProgressDialog progressBar;
-
+    private final String TAG = "PlacesView";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,16 @@ public class PlacesView extends ListActivity  {
     	LauncherUtils.launchActivity(R.layout.addplacesview, this, nvPairs);    	
     	
     }
+    
+    
+    
+    public void ScanButtonHandler(View view) {
+    	IntentIntegrator qrScanner = new IntentIntegrator(this);
+    	qrScanner.setTitle("Installing QR code reader");
+    	qrScanner.setMessage("Please select yes to get the QR code reader...");
+    	qrScanner.initiateScan();
+    }
+    
     
     public void PlacesButtonHandler(View view) {
     	LauncherUtils.launchActivity(R.layout.placesview, this, null);    	
@@ -161,6 +172,7 @@ public class PlacesView extends ListActivity  {
    			if(resultData != null)
    			{
    				responseString = resultData.getString(RESTClientService.REST_RESPONSE); 
+   				Log.d(TAG,responseString);
    				try {
   					JSONObject placesObj = new JSONObject(responseString);
    					JSONArray places = (JSONArray) placesObj.get("placesNearby");
