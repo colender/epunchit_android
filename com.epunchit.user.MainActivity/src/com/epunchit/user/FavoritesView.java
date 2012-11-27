@@ -32,7 +32,7 @@ public class FavoritesView extends ListActivity  {
 	
 	PlacesSearchResultReceiver placesSearchResultReceiver	= null;
     private ProgressDialog progressBar;
-
+    private final String TAG = "FavoriteView";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +57,8 @@ public class FavoritesView extends ListActivity  {
       	NameValuePair nvPair = new BasicNameValuePair("placeURL",keyword);
     	nvPairs.add(nvPair);
     	LauncherUtils.launchActivity(R.layout.epplacedetailsview, this, nvPairs);    	
+    	if(DEBUG)
+    		Log.d(TAG,"Item Clicked");
 	}
      
     public void AddPlaceButtonHandler(View view) {

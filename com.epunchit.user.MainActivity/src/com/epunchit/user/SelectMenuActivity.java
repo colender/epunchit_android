@@ -13,7 +13,7 @@ import android.os.ResultReceiver;
 import com.epunchit.Constants;
 import com.epunchit.utils.LauncherUtils;
 import com.epunchit.utils.Utils;
-import com.facebook.android.R;
+
 
 import android.util.Log;
 import android.view.View;

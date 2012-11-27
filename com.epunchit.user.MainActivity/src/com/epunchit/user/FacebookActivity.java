@@ -43,11 +43,8 @@ import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.AsyncFacebookRunner.RequestListener;
 import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
-import com.facebook.android.R;
+
 import com.facebook.android.Util;
-import com.facebook.android.Facebook.DialogListener;
-import com.facebook.android.R.id;
-import com.facebook.android.R.layout;
 
 
 public class FacebookActivity extends Activity {

@@ -16,17 +16,6 @@
 
 package com.epunchit.user;
 
-import com.epunchit.user.BaseRequestListener;
-import com.epunchit.user.SessionEvents.AuthListener;
-import com.epunchit.user.SessionEvents.LogoutListener;
-import com.facebook.android.AsyncFacebookRunner;
-import com.facebook.android.DialogError;
-import com.facebook.android.Facebook;
-import com.facebook.android.FacebookError;
-import com.facebook.android.R;
-import com.facebook.android.R.drawable;
-import com.facebook.android.Facebook.DialogListener;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -35,6 +24,14 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.epunchit.user.SessionEvents.AuthListener;
+import com.epunchit.user.SessionEvents.LogoutListener;
+import com.facebook.android.AsyncFacebookRunner;
+import com.facebook.android.DialogError;
+import com.facebook.android.Facebook;
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.FacebookError;
 
 public class LoginButton extends ImageButton {
     
