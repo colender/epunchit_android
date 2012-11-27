@@ -121,8 +121,8 @@ public class ImageLoader {
         try {
             Bitmap bitmap=null;
             URL imageUrl = new URL(url);
-     	   HttpsURLConnection conn = (HttpsURLConnection) imageUrl.openConnection();
-     	  conn.setSSLSocketFactory(sslContext.getSocketFactory());
+     	   HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
+     	  //conn.setSSLSocketFactory(sslContext.getSocketFactory()); // Not using ssl getting images works fine 
             conn.setConnectTimeout(30000);
             conn.setReadTimeout(30000);
             conn.setInstanceFollowRedirects(true);
