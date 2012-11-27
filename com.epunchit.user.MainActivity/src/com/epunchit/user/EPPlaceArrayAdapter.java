@@ -12,11 +12,13 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import com.epunchit.Constants;
+import com.epunchit.user.ImageDownloader.Mode;
 import com.epunchit.utils.LauncherUtils;
 import com.epunchit.utils.Utils;
 import static com.epunchit.Constants.*;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,6 +32,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +47,8 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
     ImageLoader imageLoader = null;
     Bitmap stubIcon = null;
     private final String TAG = "EPPlaceArrayAdapter";
-   
+    private ImageDownloader imageDownloader;
+    private ProgressDialog progressbar;
     public EPPlaceArrayAdapter(Context context, int layoutResourceId) {
         super(context, layoutResourceId);
         this.layoutResourceId = layoutResourceId;
@@ -56,18 +60,42 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
                 R.drawable.no_face_logo);
 
     }
-
     
+    
+
     public EPPlaceArrayAdapter(Context context, int layoutResourceId, List<EPPlace> data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.inflater = ((Activity)context).getLayoutInflater();
         this.imageLoader = new ImageLoader(context);
+       
     	stubIcon = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.no_face_logo);
         this.data = data;
         this.curLoc = Utils.getLastKnownLocation(context);
+        this.progressbar= null;
+        //imageDownloader = new ImageDownloader(this.context,this.progressbar);
+        //imageDownloader.setMode(Mode.NO_DOWNLOADED_DRAWABLE);
+        //this.placesDB = PlacesDatabase.get(context);
+        //createImageMap(data);
+    }
+
+    
+    public EPPlaceArrayAdapter(Context context, int layoutResourceId, List<EPPlace> data,ProgressDialog progressBar) {
+        super(context, layoutResourceId, data);
+        this.layoutResourceId = layoutResourceId;
+        this.context = context;
+        this.inflater = ((Activity)context).getLayoutInflater();
+       // this.imageLoader = new ImageLoader(context);
+       
+    	stubIcon = BitmapFactory.decodeResource(context.getResources(),
+                R.drawable.no_face_logo);
+        this.data = data;
+        this.curLoc = Utils.getLastKnownLocation(context);
+        this.progressbar= progressBar;
+        imageDownloader = new ImageDownloader(this.context,this.progressbar);
+        imageDownloader.setMode(Mode.NO_DOWNLOADED_DRAWABLE);
         //this.placesDB = PlacesDatabase.get(context);
         //createImageMap(data);
     }
@@ -113,8 +141,11 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
         			holder.txtDistance.setText("? miles");
         		}
         	}
-        	holder.txtTitle.setText(Html.fromHtml("<a href=''>"+place.getName()+"</a>"));
-        	holder.txtTitle.setOnClickListener(new View.OnClickListener() {
+        	
+        	//Removes HTML Links on titles 
+        	holder.txtTitle.setText(place.getName());
+        	// should not make text title clickable.
+        	/*holder.txtTitle.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
@@ -123,7 +154,7 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
 			    	nvPairs.add(nvPair);
 			    	LauncherUtils.launchActivity(R.layout.epplacedetailsview, context, nvPairs);    	
 				}
-			});
+			});*/
         	
         	/*
         	if(holder.txtPhone != null)
@@ -137,6 +168,9 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
 				
         			@Override
         			public void onClick(View v) {
+        				// This must be changed causing error in Favorites activity 
+        				// Should just send remove from favorites to sever 
+        				
         				PlacesView placesView = (PlacesView)context;
         				String action = "follow";
         				if(place.isFollowing())
@@ -176,8 +210,9 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
         		try {
         			if(photoURL != null)
         			{
-        				Log.d(TAG,photoURL);
+        				//Log.d(TAG,photoURL);
         				imageLoader.DisplayImage(photoURL, holder.imgIcon);
+        				//imageDownloader.download(photoURL, holder.imgIcon);
         				/*
         				Bitmap bitmapIcon = Utils.getBitmapFromURL(photoURL, context);
     					//ByteArrayOutputStream stream = new ByteArrayOutputStream();

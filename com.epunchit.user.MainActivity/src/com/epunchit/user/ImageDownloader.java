@@ -14,7 +14,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +28,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 
 
@@ -43,6 +46,7 @@ public class ImageDownloader {
     public enum Mode { NO_ASYNC_TASK, NO_DOWNLOADED_DRAWABLE, CORRECT }
     private Mode mode = Mode.NO_ASYNC_TASK;
     private Context context;
+    private ProgressDialog progressbar;
     /**
      * Download the specified image from the Internet and binds it to the provided ImageView. The
      * binding is immediate if the image is found in the cache and will be done asynchronously
@@ -55,6 +59,12 @@ public class ImageDownloader {
     
     public ImageDownloader(Context contxt){ 
     	
+    	context = contxt;
+    	progressbar = null;
+    }
+    
+    public ImageDownloader(Context contxt,ProgressDialog progressBar){ 
+    	progressbar = progressBar;
     	context = contxt;
     	
     }
@@ -156,8 +166,8 @@ public class ImageDownloader {
         final int IO_BUFFER_SIZE = 4 * 1024;
 
         // AndroidHttpClient is not allowed to be used from the main thread
-        final HttpClient client = (mode == Mode.NO_ASYNC_TASK) ? new MyHttpClient(context) :
-            AndroidHttpClient.newInstance("Android");
+        final HttpClient client = (mode == Mode.NO_ASYNC_TASK) ? new DefaultHttpClient() :
+        	new MyHttpClient(context);
         final HttpGet getRequest = new HttpGet(url);
 
         try {
@@ -267,6 +277,10 @@ public class ImageDownloader {
                 if ((this == bitmapDownloaderTask) || (mode != Mode.CORRECT)) {
                     imageView.setImageBitmap(bitmap);
                 }
+            }
+            
+            if(progressbar.isShowing()){
+            	progressbar.dismiss();
             }
         }
     }

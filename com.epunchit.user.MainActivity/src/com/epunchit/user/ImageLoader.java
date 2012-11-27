@@ -72,9 +72,9 @@ public class ImageLoader {
             HttpConnectionParams.setConnectionTimeout(httpParams, timeoutConnection);
             HttpConnectionParams.setSoTimeout(httpParams, timeoutSocket);
             KeyStore trusted = KeyStore.getInstance("BKS");
-            InputStream in = context.getResources().openRawResource(R.raw.epunchit);
+            InputStream in = context.getResources().openRawResource(R.raw.mykeystore);
             try {
-            	trusted.load(in, "oside6023".toCharArray());
+            	trusted.load(in, "mysecret".toCharArray());
             } finally {
             	in.close();
             }

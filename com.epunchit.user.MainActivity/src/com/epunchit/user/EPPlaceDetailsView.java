@@ -1,6 +1,7 @@
 package com.epunchit.user;
 
-import static com.epunchit.Constants.*;
+import static com.epunchit.Constants.BASE_IMAGE_PATH;
+import static com.epunchit.Constants.EP_PLACE_DETAILS_PATH;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,24 +11,10 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
-import com.epunchit.Constants;
-import com.epunchit.utils.LauncherUtils;
-import com.epunchit.utils.TargetLocationOverlay;
-import com.epunchit.utils.Utils;
-import com.facebook.android.R;
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.MapActivity;
-import com.google.android.maps.MapController;
-import com.google.android.maps.MapView;
-import com.google.android.maps.MyLocationOverlay;
-
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -47,7 +34,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import static com.epunchit.Constants.*;
+
+import com.epunchit.Constants;
+import com.epunchit.utils.LauncherUtils;
+import com.epunchit.utils.TargetLocationOverlay;
+import com.epunchit.utils.Utils;
+import com.google.android.maps.GeoPoint;
+import com.google.android.maps.MapView;
+import com.google.android.maps.MyLocationOverlay;
 
 public class EPPlaceDetailsView extends FragmentActivity {
 	static final int FB_POST_REQ_CODE = 999;
