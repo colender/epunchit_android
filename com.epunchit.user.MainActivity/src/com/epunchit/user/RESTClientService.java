@@ -113,8 +113,8 @@ public class RESTClientService extends IntentService {
             switch (verb) {
             	case GET: {
                     response = makeGetRequest(action.toString(), paramsToList(params));
-                    Log.d("RestClientService:",action.toString());
-                    Log.d("RestClientservice:",response.toString());
+                    Log.d("RestClientService:action",action.toString());
+                    Log.d("RestClientservice:response",response.toString());
             		break;
             	}
             	case PUT: {
@@ -133,6 +133,8 @@ public class RESTClientService extends IntentService {
             	HttpEntity responseEntity = response.getEntity();
             	StatusLine responseStatus = response.getStatusLine();
             	int statusCode = responseStatus != null ? responseStatus.getStatusCode() : 0;
+            	
+            	
            		if (responseEntity != null) {
            			Bundle resultData = new Bundle();
            			resultData.putString(REST_RESPONSE, EntityUtils.toString(responseEntity, HTTP.UTF_8));
@@ -199,7 +201,7 @@ public class RESTClientService extends IntentService {
         	post.setEntity(entity);
         }
         post.setHeader("X-Same-Domain", "1");  // XSRF
-        DefaultHttpClient client = Utils.getTrustedHttpClient(mContext);
+      	DefaultHttpClient client = Utils.getTrustedHttpClient(mContext);
         HttpResponse res = client.execute(post);
         client.getConnectionManager().shutdown();
         return res;
@@ -223,9 +225,10 @@ public class RESTClientService extends IntentService {
             uri = uriBuilder.build();
             request.setURI(new URI(uri.toString()));
         }
-        DefaultHttpClient client = Utils.getTrustedHttpClient(mContext);
+       // DefaultHttpClient client = Utils.getTrustedHttpClient(mContext);
+        DefaultHttpClient client = new DefaultHttpClient();
         HttpResponse res = client.execute(request);
-        client.getConnectionManager().shutdown();
+        //client.getConnectionManager().shutdown();
         return res;
     }
 	
