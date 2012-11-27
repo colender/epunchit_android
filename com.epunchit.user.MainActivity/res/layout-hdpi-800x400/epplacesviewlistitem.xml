@@ -18,6 +18,9 @@ android:background="#FFFFFF"
         android:textColor="@android:color/black"
         android:layout_toRightOf="@id/imgIcon"
         android:paddingLeft="5dp"
+        android:focusableInTouchMode="false"
+		android:clickable="false"
+		android:focusable="false"
         
          />       
      <TextView android:id="@+id/txtDistance"
@@ -28,13 +31,15 @@ android:background="#FFFFFF"
         android:textColor="@android:color/black"
         android:layout_toRightOf="@id/txtTitle"
         android:paddingLeft="5dp"
+        android:focusableInTouchMode="false"
+		android:clickable="false"
+		android:focusable="false"
          />       
 	
 	
      <Button android:id="@+id/imgFollow"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:clickable="true"
    		android:background="@drawable/not_following"
         android:layout_alignParentRight="true"
         />

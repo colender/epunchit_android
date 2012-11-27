@@ -2,12 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:background="#FFFFFF"
+android:background="@android:drawable/list_selector_background"
 >
      <ImageView android:id="@+id/imgIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
+        android:focusable="false"
         />
 
      <TextView android:id="@+id/txtTitle"
@@ -18,6 +19,9 @@ android:background="#FFFFFF"
         android:textColor="@android:color/black"
         android:layout_toRightOf="@id/imgIcon"
         android:paddingLeft="5dp"
+        android:focusableInTouchMode="false"
+		android:clickable="false"
+		android:focusable="false"
         
          />       
 	
@@ -28,6 +32,7 @@ android:background="#FFFFFF"
         android:clickable="true"
    		android:background="@drawable/not_following"
         android:layout_alignParentRight="true"
+        android:focusable="false"
         />
 
      <TextView
@@ -39,7 +44,10 @@ android:background="#FFFFFF"
          android:paddingLeft="5dp"
          android:textColor="@android:color/black"
          android:textSize="12sp"
-         android:textStyle="bold" />
+         android:textStyle="bold"
+         android:focusableInTouchMode="false"
+		 android:clickable="false"
+		 android:focusable="false" />
          
 </RelativeLayout>
 
