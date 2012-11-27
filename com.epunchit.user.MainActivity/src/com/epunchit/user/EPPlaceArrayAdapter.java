@@ -171,7 +171,7 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
         				// This must be changed causing error in Favorites activity 
         				// Should just send remove from favorites to sever 
         				
-        				PlacesView placesView = (PlacesView)context;
+        				//PlacesView placesView = (PlacesView)context;
         				String action = "follow";
         				if(place.isFollowing())
         				{
@@ -184,7 +184,7 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
         					place.setFollowing(true);
             				holder.btnFollow.setBackgroundResource(R.drawable.following);
         				}
-        				placesView.followPlaceRequest(place.getUrl(), action);
+        				Utils.followPlaceRequest(place.getUrl(), action,getContext());
         			}
         			});
             	if(place.isFollowing())
