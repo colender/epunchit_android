@@ -96,7 +96,7 @@ public class ImageLoader {
             imageView.setImageBitmap(bitmap);
         else
         {
-        	Util.logd(TAG, "bitmap is null");
+        	
             queuePhoto(url, imageView);
             imageView.setImageResource(stub_id);
         }

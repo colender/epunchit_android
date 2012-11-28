@@ -38,6 +38,7 @@ import com.epunchit.user.PlaceDetails;
 import com.epunchit.user.PlaceDetailsResponse;
 import com.epunchit.user.PlacesDatabase;
 import com.epunchit.user.R;
+import com.epunchit.user.RESTClientService;
 import com.google.api.client.googleapis.GoogleHeaders;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
@@ -50,12 +51,15 @@ import com.google.api.client.http.json.JsonHttpParser;
 import com.google.api.client.json.jackson.JacksonFactory;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import java.util.regex.Matcher;
@@ -434,6 +438,25 @@ public class Utils {
 	            }
 	        }
 	        catch(Exception ex){}
+	    }
+	    
+	    public static void followPlaceRequest(String placeURL, String action,Context context)
+	    {
+		    try {
+	 	        Bundle params = new Bundle();
+		    	params.putString("place_url", placeURL);
+		    	params.putString("action", action);
+	 	    	params.putString("user", Utils.getAccountName(context));
+		    	Intent intent = new Intent(context, RESTClientService.class);
+		        intent.setData(Uri.parse(EP_USER_FOLLOW_PLACE_PATH));
+		        intent.putExtra(RESTClientService.EXTRA_PARAMS, params);
+		        intent.putExtra(RESTClientService.EXTRA_HTTP_VERB, RESTClientService.GET);
+		        context.startService(intent);  
+			} catch (Exception e) {
+				if(Constants.DEBUG)
+					Log.e("PlacesView","error un/following place:"+e.getMessage());
+			}	
+
 	    }
 
 }

@@ -45,6 +45,7 @@ public class PlacesView extends ListActivity  {
         super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.placesview);
+ 
     }
     
     @Override
