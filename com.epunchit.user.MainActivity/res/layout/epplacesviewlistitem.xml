@@ -8,7 +8,9 @@
         android:id="@+id/imgIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true" 
+        android:focusable="false" 
+        />
 
     <TextView
         android:id="@+id/txtTitle"
@@ -18,7 +20,8 @@
         android:paddingLeft="5dp"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:focusable="false" />
 
     <TextView
         android:id="@+id/txtDistance"
@@ -29,7 +32,8 @@
         android:paddingLeft="5dp"
         android:textColor="@android:color/black"
         android:textSize="12sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/imgFollow"
@@ -38,7 +42,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/not_following"
-        android:clickable="true" />
+        android:clickable="true"
+        android:focusable="false" />
 
 </RelativeLayout>
 <!-- 

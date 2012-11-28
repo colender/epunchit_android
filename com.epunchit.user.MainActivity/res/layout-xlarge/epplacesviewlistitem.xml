@@ -2,11 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
+android:background="#ffffff"
 >
      <ImageView android:id="@+id/imgIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
+        android:focusable="false"
         />
 
      <TextView android:id="@+id/txtTitle"
@@ -17,16 +19,7 @@ android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:layout_toRightOf="@id/imgIcon"
         android:paddingLeft="5dp"
-        
-         />       
-     <TextView android:id="@+id/txtDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:textColor="@android:color/black"
-        android:layout_toRightOf="@id/txtTitle"
-        android:paddingLeft="5dp"
+        android:focusable="false"
          />       
 	
 	
@@ -36,7 +29,21 @@ android:layout_height="wrap_content"
         android:clickable="true"
    		android:background="@drawable/not_following"
         android:layout_alignParentRight="true"
+        android:focusable="false"
         />
+
+     <TextView
+         android:id="@+id/txtDistance"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/imgFollow"
+         android:layout_alignBottom="@+id/imgFollow"
+         android:layout_alignLeft="@+id/txtTitle"
+         android:focusable="false"
+         android:paddingLeft="5dp"
+         android:textColor="@android:color/black"
+         android:textSize="12sp"
+         android:textStyle="bold" />
          
 </RelativeLayout>
 
