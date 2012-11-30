@@ -13,7 +13,7 @@
 >
 	<ImageView android:id="@+id/headerImg" 
     android:background="@drawable/header"
-		android:layout_width="match_parent" 
+		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
 		android:layout_alignParentTop="true"
  />
@@ -30,18 +30,18 @@
         android:layout_alignBaseline="@+id/signOut"
     	android:background="@drawable/uni_button"
          />       
-
-     <Button android:id="@+id/signOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:clickable="true"
-        android:onClick="onSignOutHandler"
-        android:layout_alignBottom="@id/headerImg"
-        android:layout_alignRight="@id/headerImg"
-    android:background="@drawable/signout_button"
- 	/>       
+
+     <Button
+         android:id="@+id/signOut"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBottom="@id/headerImg"
+         android:layout_alignRight="@id/headerImg"
+         android:background="@drawable/signout_button"
+         android:clickable="true"
+         android:onClick="onSignOutHandler"
+         android:textSize="5sp"
+         android:textStyle="bold" />
 
 </RelativeLayout>
 
@@ -52,6 +52,7 @@
     android:layout_centerHorizontal="true"
     android:layout_below="@id/header"
     android:background="@drawable/profile_box"
+    android:padding="10dp"
 >
     
 <TextView 
@@ -62,23 +63,30 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textColor="@android:color/black"
-    android:layout_marginLeft="120dp"
+    android:layout_marginLeft="20dp"
     android:layout_marginTop="10dp"
     />
-
-<TextView 
-    android:id="@+id/mostVisited"
-    android:text=""
-    android:textSize="12sp"
+<ImageView 
+    android:id="@+id/profile_Line"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_below="@id/userName"
-    android:layout_marginLeft="100dp"
-    android:layout_marginTop="2dp"
-    android:textStyle="bold"
-    android:cursorVisible="false"
-    android:textColor="@android:color/black"    
+    android:src="@drawable/profile_line"
+    android:layout_bottom="@+id/userName"
     />
+
+<TextView
+    android:id="@+id/mostVisited"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/userName"
+    android:layout_below="@+id/profile_Line"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="2dp"
+    android:text=""
+    android:textColor="@android:color/black"
+    android:textSize="12sp"
+    android:textStyle="bold" />
+
 <TextView 
     android:id="@+id/availableRedeems"
     android:text="5"

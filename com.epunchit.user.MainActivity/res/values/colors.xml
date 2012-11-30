@@ -23,6 +23,6 @@
     <color name="black">#000000</color>
     <drawable name="white">#ffffff</drawable>
     <drawable name="black">#000000</drawable>
-    <color name="epunchit_blue">#00adee</color>
+    <color name="epunchit_blue">#00ADEE</color>
     <color name="WHITE">#ffffff</color>
 </resources>
