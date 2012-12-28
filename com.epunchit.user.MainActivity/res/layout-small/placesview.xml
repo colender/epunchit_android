@@ -3,7 +3,7 @@
     android:id="@+id/epplacesView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/WHITE"
 >
 <ImageView android:id="@+id/header" 
     android:background="@drawable/header"
@@ -25,8 +25,10 @@
      	<ListView android:id="@android:id/list"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
- 				android:clickable="true"
- 				android:cacheColorHint="#00000000"
+ 			   android:clickable="true"
+ 			   android:cacheColorHint="#00000000"
+ 			   android:divider="#CCCCCC"
+ 			   android:dividerHeight="1dp"
                android:drawSelectorOnTop="false"/>
      
 
@@ -38,53 +40,44 @@
  </LinearLayout>
  	
 <LinearLayout
-android:id="@+id/footer" 
-android:orientation="horizontal"
-android:layout_width="match_parent" 
-android:layout_height="80dp"
-android:layout_alignParentBottom="true"
->
+    android:id="@+id/footer"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_alignParentBottom="true"
+    android:orientation="horizontal" >
 
-<Button
-android:id="@+id/btnScan"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_weight="1.0"
-android:onClick="ScanButtonHandler" 
-android:background="@drawable/scan"       
-/>
-    
-    
-<Button
-android:id="@+id/btnHome"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_weight="1.0"
-android:onClick="HomeButtonHandler" 
-android:background="@drawable/home"       
-/>
-    
-<Button
-android:id="@+id/btnAddPlace"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_weight="1.0"
-android:onClick="AddPlaceButtonHandler" 
-android:background="@drawable/add_place"       
-       
-/>
+    <Button
+        android:id="@+id/btnScan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/scan"
+        android:onClick="ScanButtonHandler" />
 
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/home"
+        android:onClick="HomeButtonHandler" />
 
-<Button
-android:id="@+id/btnFavorites"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_weight="1.0"
-android:onClick="FavoritesButtonHandler"    
-android:background="@drawable/favorites"       
-    
-/>
+    <Button
+        android:id="@+id/btnAddPlace"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/add_place"
+        android:onClick="AddPlaceButtonHandler" />
 
+    <Button
+        android:id="@+id/btnFavorites"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/favorites"
+        android:onClick="FavoritesButtonHandler" />
 </LinearLayout>
+
 </RelativeLayout>
 

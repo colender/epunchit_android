@@ -224,11 +224,15 @@ public class RESTClientService extends IntentService {
             }
             uri = uriBuilder.build();
             request.setURI(new URI(uri.toString()));
+            if(Constants.DEBUG)
+            	Log.d(TAG,uri.toString());
         }
        // DefaultHttpClient client = Utils.getTrustedHttpClient(mContext);
         DefaultHttpClient client = new DefaultHttpClient();
         HttpResponse res = client.execute(request);
-        //client.getConnectionManager().shutdown();
+        if(!Constants.DEBUG)
+        	client.getConnectionManager().shutdown();
+        
         return res;
     }
 	

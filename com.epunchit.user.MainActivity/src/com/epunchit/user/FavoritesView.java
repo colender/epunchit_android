@@ -25,10 +25,12 @@ import android.os.Handler;
 import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class FavoritesView extends ListActivity  {
+public class FavoritesView extends BaseListActivity  {
 	
 	PlacesSearchResultReceiver placesSearchResultReceiver	= null;
     private ProgressDialog progressBar;
@@ -45,6 +47,27 @@ public class FavoritesView extends ListActivity  {
     {
     	super.onStart();
         getEPunchItPlaces();
+    }
+    
+    
+    @Override
+    protected void onDestroy() {
+    super.onDestroy();
+
+    unbindDrawables(findViewById(R.id.epfavoritesview));
+    System.gc();
+    }
+
+    private void unbindDrawables(View view) {
+        if (view.getBackground() != null) {
+        view.getBackground().setCallback(null);
+        }
+        if (view instanceof ViewGroup && view instanceof AdapterView) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+            unbindDrawables(((ViewGroup) view).getChildAt(i));
+            }
+        ((ViewGroup) view).removeAllViews();
+        }
     }
 
     @Override

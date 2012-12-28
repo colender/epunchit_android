@@ -23,154 +23,57 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 >
-    <TextView
-        android:id="@+id/lblUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#444444"
-        android:text="Email:"
-        android:layout_marginLeft="40dp"
-        />
+
     <EditText
         android:id="@+id/txtUserName"
-        android:inputType="textEmailAddress"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background"
         android:layout_gravity="center"
-         />
-     <TextView
-        android:id="@+id/lblPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#444444"
-        android:text="Password:"
-        android:layout_marginLeft="40dp"
-        />
+        android:background="@android:drawable/editbox_background"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/txtPassword"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background"
         android:layout_gravity="center"
-        android:inputType="textPassword"
-        />
-     <TextView
-        android:id="@+id/lblBday"
-        android:layout_width="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:hint="Password"
+        android:inputType="textPassword" />
+    <EditText 
+        android:id="@+id/txtPasswordComfirm"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#444444"
-        android:text="Birthday:"
-        android:layout_marginLeft="40dp"
-        />
+        android:layout_gravity="center"
+        android:hint="Confirm Password"
+        android:background="@android:drawable/editbox_background"
+        android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/txtBday"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background"
-        android:layout_gravity="center"
-        />
-    <TextView
-        android:id="@+id/lblPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#444444"
-        android:text="Phone:"
-        android:layout_marginLeft="40dp"
-        />
-    <EditText
         android:id="@+id/txtPhone"
-        android:inputType="phone"
-        android:hint="555-555-5555"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background"
         android:layout_gravity="center"
-         />
-    <TextView
-        android:id="@+id/lblFirstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#444444"
-        android:text="First Name:"
-        android:layout_marginLeft="40dp"
-        />
+        android:background="@android:drawable/editbox_background"
+        android:hint="Phone Number"
+        android:inputType="phone" />
 
     <EditText
         android:id="@+id/txtFirstName"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background"
         android:layout_gravity="center"
-        />
+        android:background="@android:drawable/editbox_background"
+        android:hint="Firstname" />
 
-         <TextView
-        android:id="@+id/lblLastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#444444"
-        android:text="Last Name:"
-        android:layout_marginLeft="40dp"
-		/>
     <EditText
         android:id="@+id/txtLastName"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background"
         android:layout_gravity="center"
-        />
-     <TextView
-        android:id="@+id/lblCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#444444"
-        android:text="City:"
-        android:layout_marginLeft="40dp"
-        />
-
-    <EditText
-        android:id="@+id/txtCity"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background"
-        android:layout_gravity="center"
-        />
-    
-     <TextView
-        android:id="@+id/lblState"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#444444"
-        android:text="State:"
-        android:layout_marginLeft="40dp"
-        />
-
-    <EditText
-        android:id="@+id/txtState"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/editbox_background"
-        android:layout_gravity="center"
-        />
-     <TextView
-        android:id="@+id/lblGender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#444444"
-        android:text="Select:"
-        android:layout_marginLeft="40dp"
-        />
+        android:hint="Lastname" />
 
 <RadioGroup
 android:id="@+id/genderGrp"
@@ -179,24 +82,19 @@ android:id="@+id/genderGrp"
 android:orientation="horizontal"
 android:layout_gravity="center_horizontal"
 android:gravity="center_horizontal">
-      <RadioButton android:id="@+id/radio_male"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Male" />
-      <RadioButton android:id="@+id/radio_female"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Female" />
-</RadioGroup>
 
-<Button
+     <Button
         android:id="@+id/btn_save"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Create" 
-        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        />
+        android:text="Create" />
+        
+        
+
+
+</RadioGroup>
+
      <TextView
         android:id="@+id/txtError"
         android:layout_width="match_parent"

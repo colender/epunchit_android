@@ -58,6 +58,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -250,6 +252,8 @@ public class Utils {
     					place.setLat(placeObj.getString("placeLat"));
     				if(placeObj.has("placeLng"))
     					place.setLng(placeObj.getString("placeLng"));
+    				if(placeObj.has("activated"))
+    					place.setActivation(placeObj.getString("activated"));
     				list.add(place);
     			} catch(Exception ex)
     			{
@@ -458,5 +462,18 @@ public class Utils {
 			}	
 
 	    }
+	    
+	    
+	   public static boolean isThereInternetConnection(Context context){
+		   ConnectivityManager cManager = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
+		   NetworkInfo netInfo = cManager.getActiveNetworkInfo();
+		   if(netInfo != null && netInfo.isConnected())
+			   return true;
+		   
+		   Log.d("Utils:Net Check: ",netInfo.toString());
+		   return false;
+		   
+		   
+	   }
 
 }

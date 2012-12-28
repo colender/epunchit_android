@@ -14,25 +14,25 @@ android:background="@android:drawable/list_selector_background"
      <TextView android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:textColor="@android:color/black"
+        android:textSize="13sp"
+        android:textColor="@color/epunchit_blue"
         android:layout_toRightOf="@id/imgIcon"
         android:paddingLeft="5dp"
         android:focusableInTouchMode="false"
 		android:clickable="false"
 		android:focusable="false"
-        
+        android:layout_marginTop="5dp"
          />       
 	
 	
      <Button android:id="@+id/imgFollow"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:clickable="true"
-   		android:background="@drawable/not_following"
+   		android:background="@android:drawable/star_on"
         android:layout_alignParentRight="true"
         android:focusable="false"
+        android:layout_marginTop="10dp"
         />
 
      <TextView
@@ -43,8 +43,7 @@ android:background="@android:drawable/list_selector_background"
          android:layout_below="@+id/txtTitle"
          android:paddingLeft="5dp"
          android:textColor="@android:color/black"
-         android:textSize="12sp"
-         android:textStyle="bold"
+         android:textSize="10sp"
          android:focusableInTouchMode="false"
 		 android:clickable="false"
 		 android:focusable="false" />

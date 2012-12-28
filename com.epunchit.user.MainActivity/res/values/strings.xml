@@ -33,5 +33,6 @@
     <string name="post">Wall Post!</string>
     <string name="delete">Delete Post</string>
     <string name="logintofb">Please Login to Facebook</string>
+    <string name="redeem_success">Your Redeem was successful! &lt;br /&gt;&lt;font color=&quot;#90EE90&quot; &gt;&lt;b&gt;Please show cashier now&lt;/b&gt;&lt;/font&gt;</string>
     	
 </resources>

@@ -24,6 +24,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
@@ -58,6 +59,7 @@ public class AddPlacesView extends ListActivity {
 	private static final String PLACES_DETAILS_URL = "https://maps.googleapis.com/maps/api/place/details/json?";
 	private static final HttpTransport transport = new NetHttpTransport();
     private ProgressDialog progressBar;
+    private final String TAG = "AddPlacesView";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +83,14 @@ public class AddPlacesView extends ListActivity {
         }
 //		List<Place> placeList = getPlaceList(searchKeywords, "3");
 		progressBar = ProgressDialog.show(this, "Nearby places", "Please wait...");
-		List<Place> placeList = getPlaceList(searchKeywords, null);
-		if (progressBar.isShowing()) {
+		List<Place> placeList =null;
+		
+		AddPlaceListTask placeTask = new AddPlaceListTask(placeList);
+		placeTask.execute(searchKeywords.toLowerCase());
+		
+	/*	if (progressBar.isShowing()) {
             progressBar.dismiss();
-        }
+        }*/
 		setListAdapter(new AddPlacesArrayAdapter(this, 
 				R.layout.addplacesviewlistitem,
 				placeList));
@@ -209,9 +215,46 @@ public class AddPlacesView extends ListActivity {
 			PlacesList places = request.execute().parseAs(PlacesList.class);
 			return places.results;
 		} catch (HttpResponseException e) {
+			
+			Log.d(TAG, e.getMessage());
 		} catch (IOException e) {
+			Log.d(TAG, e.getMessage());
 		}    	
     	return list;
+    }
+    
+    
+    
+    
+    
+    public class AddPlaceListTask extends AsyncTask<String, Void, List<Place>>{
+    	private List<Place> list = null;
+    	private String cat = null;
+    	public AddPlaceListTask(List<Place> list){ 
+    		this.list= list;
+    	}
+    	
+    	
+		@Override
+		protected List<Place> doInBackground(String... params) {
+			progressBar.show();
+			
+			List<Place> result = getPlaceList(params[0], null);
+			
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(List<Place> result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			list = result;
+			progressBar.dismiss();
+			
+		} 
+    	
+    		
+    	
     }
  
   /*

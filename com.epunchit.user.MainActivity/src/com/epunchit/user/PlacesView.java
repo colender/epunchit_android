@@ -1,6 +1,8 @@
 package com.epunchit.user;
 
-import static com.epunchit.Constants.*;
+import static com.epunchit.Constants.DEBUG;
+import static com.epunchit.Constants.EP_PLACES_NEARBY_PATH;
+import static com.epunchit.Constants.EP_USER_FOLLOW_PLACE_PATH;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,12 +11,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import com.epunchit.Constants;
-import com.epunchit.user.AddPlacesView.AddPlaceResultReceiver;
-import com.epunchit.utils.LauncherUtils;
-import com.epunchit.utils.Utils;
-import com.google.zxing.integration.android.IntentIntegrator;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -27,15 +23,17 @@ import android.os.Handler;
 import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class PlacesView extends ListActivity  {
+import com.epunchit.Constants;
+import com.epunchit.utils.LauncherUtils;
+import com.epunchit.utils.Utils;
+import com.google.zxing.integration.android.IntentIntegrator;
+
+public class PlacesView extends BaseListActivity  {
 	
 	PlacesSearchResultReceiver placesSearchResultReceiver	= null;
     private ProgressDialog progressBar;
@@ -66,6 +64,26 @@ public class PlacesView extends ListActivity  {
     	nvPairs.add(nvPair);
     	LauncherUtils.launchActivity(R.layout.epplacedetailsview, this, nvPairs);    	
 	}
+    
+    @Override
+    protected void onDestroy() {
+    super.onDestroy();
+
+    unbindDrawables(findViewById(R.id.epplacesView));
+    System.gc();
+    }
+
+    private void unbindDrawables(View view) {
+        if (view.getBackground() != null) {
+        view.getBackground().setCallback(null);
+        }
+        if (view instanceof ViewGroup && view instanceof AdapterView) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+            unbindDrawables(((ViewGroup) view).getChildAt(i));
+            }
+        ((ViewGroup) view).removeAllViews();
+        }
+    }
      
     public void AddPlaceButtonHandler(View view) {
     	//onSearchRequested();
@@ -75,8 +93,7 @@ public class PlacesView extends ListActivity  {
     	LauncherUtils.launchActivity(R.layout.addplacesview, this, nvPairs);    	
     	
     }
-    
-    
+
     
     public void ScanButtonHandler(View view) {
     	IntentIntegrator qrScanner = new IntentIntegrator(this);
@@ -137,6 +154,7 @@ public class PlacesView extends ListActivity  {
  	       		Log.d("getEPlaces","lat,lng="+dLat+","+dLng);
 	       	params.putString("lat", String.valueOf(dLat));
  	       	params.putString("lng", String.valueOf(dLng));
+ 	       //	params.putString("type","lat");
 		    intent.setData(Uri.parse(EP_PLACES_NEARBY_PATH));
 	    	
 	        intent.putExtra(RESTClientService.EXTRA_PARAMS, params);

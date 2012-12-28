@@ -23,6 +23,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.opengl.Visibility;
 import android.text.Html;
 import android.text.util.Linkify;
 import android.util.Log;
@@ -194,6 +195,18 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
             		holder.btnFollow.setBackgroundResource(R.drawable.not_following);
             	}
         	}
+        	
+        	
+        	String getActivated = place.getActivation();
+        	Log.d(TAG, getActivated);
+        	if(getActivated.equalsIgnoreCase("0")){
+        		
+        		holder.btnFollow.setVisibility(View.INVISIBLE);
+        		
+        	}else { 
+        		
+        		holder.btnFollow.setVisibility(View.VISIBLE);
+        	}
         	/*
         	if(imageMap.containsKey(place.getUrl()))
         	{
@@ -202,7 +215,8 @@ public class EPPlaceArrayAdapter extends ArrayAdapter<EPPlace> {
         	*/
 //        	else {
         		String photoURL = null;
-        		if(place.getFace() != null)
+        		if(place.getFace() != null && !place.getFace().equalsIgnoreCase(""))
+        			
         			photoURL = BASE_IMAGE_PATH + place.getFace();
         		if(DEBUG)
         			Log.d("EPPlaceArrayAdapter","getView photoURL:"+photoURL);

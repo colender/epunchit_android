@@ -21,6 +21,6 @@
 	<classpathentry kind="lib" path="libs/jackson-core-asl-1.9.9.jar"/>
 	<classpathentry kind="lib" path="libs/jdo2-api-2.3-eb.jar"/>
 	<classpathentry kind="lib" path="libs/jsr305-1.3.9.jar"/>
-	<classpathentry kind="lib" path="libs/protobuf-java-2.4.1.jar"/>
+	<classpathentry kind="lib" path="libs/urbanairship-lib-2.0.2.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

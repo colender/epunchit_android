@@ -25,7 +25,7 @@ public class EPPlace {
 	public String lng;
 	
 	public String phone;
-	
+	private String activate;
 	
 		
 	public String getLat() {
@@ -125,9 +125,13 @@ public class EPPlace {
 	}
 	
 	
-	public void setActivation(boolean activate){ 
+	public void setActivation(String activate){ 
+		this.activate = activate;
 		
-		
+	}
+	
+	public String getActivation(){ 
+		return activate;
 	}
 
 	@Override

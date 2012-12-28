@@ -3,262 +3,273 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/header"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-	android:layout_alignParentTop="true"
->
-	<ImageView android:id="@+id/headerImg" 
-    android:background="@drawable/header"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:layout_alignParentTop="true"
- />
-    
-     <Button android:id="@+id/redeemCode"
-        android:layout_width="wrap_content"
+    android:background="@drawable/background" >
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:clickable="false"
-        android:visibility="invisible"
-        android:onClick="getRedeemCodeHandler"
-        android:layout_toLeftOf="@+id/signOut"
-        android:layout_alignBaseline="@+id/signOut"
-    	android:background="@drawable/uni_button"
-         />       
-
-     <Button
-         android:id="@+id/signOut"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignBottom="@id/headerImg"
-         android:layout_alignRight="@id/headerImg"
-         android:background="@drawable/signout_button"
-         android:clickable="true"
-         android:onClick="onSignOutHandler"
-         android:textSize="5sp"
-         android:textStyle="bold" />
+        android:layout_alignParentTop="true" >
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/headerImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/header" />
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/profile"
-	android:layout_width="match_parent" 
-	android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_below="@id/header"
-    android:background="@drawable/profile_box"
-    android:padding="10dp"
->
-    
-<TextView 
-    android:id="@+id/userName"
-    android:text="UserName"
-    android:textSize="15sp"
-    android:textStyle="bold"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textColor="@android:color/black"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="10dp"
-    />
-<ImageView 
-    android:id="@+id/profile_Line"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/profile_line"
-    android:layout_bottom="@+id/userName"
-    />
+        <Button
+            android:id="@+id/redeemCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/signOut"
+            android:layout_toLeftOf="@+id/signOut"
+            android:background="@drawable/uni_button"
+            android:clickable="false"
+            android:onClick="getRedeemCodeHandler"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
 
-<TextView
-    android:id="@+id/mostVisited"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignLeft="@+id/userName"
-    android:layout_below="@+id/profile_Line"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="2dp"
-    android:text=""
-    android:textColor="@android:color/black"
-    android:textSize="12sp"
-    android:textStyle="bold" />
+        <Button
+            android:id="@+id/signOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/headerImg"
+            android:layout_alignRight="@id/headerImg"
+            android:background="@drawable/signout_button"
+            android:clickable="true"
+            android:onClick="onSignOutHandler"
+            android:textSize="5sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
-<TextView 
-    android:id="@+id/availableRedeems"
-    android:text="5"
-    android:textSize="12sp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/mostVisited"
-    android:layout_alignLeft="@id/mostVisited"
-    android:textStyle="bold"
-    android:textColor="@android:color/black"  
-    android:layout_marginTop="2dp"  
-    />
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/profile_box"
+        android:padding="10dp" >
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="UserName"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/punches"
-	android:layout_width="match_parent" 
-	android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_below="@id/profile"
-    android:background="@drawable/punches_box"
->
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:stretchColumns="5"
-android:layout_centerHorizontal="true"
-android:layout_marginTop="20dp"
->
-    <TableRow>
-        <ImageView android:id="@+id/punch1" 
-    android:background="@drawable/stamp"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:visibility="invisible"
- />
-       <ImageView android:id="@+id/punch2" 
-    android:background="@drawable/stamp"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:visibility="invisible"
- />
-        <ImageView android:id="@+id/punch3" 
-    android:background="@drawable/stamp"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:visibility="invisible"
- />
-       <ImageView android:id="@+id/punch4" 
-    android:background="@drawable/stamp"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:visibility="invisible"
- />
-       
-        <ImageView android:id="@+id/punch5" 
-    android:background="@drawable/stamp"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:visibility="invisible"
- />
-       
-       </TableRow>
-    <TableRow>
-        <ImageView android:id="@+id/punch6" 
-    android:background="@drawable/stamp"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:visibility="invisible"
- />    
-        <ImageView android:id="@+id/punch7" 
-    android:background="@drawable/stamp"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:visibility="invisible"
- />
-        <ImageView android:id="@+id/punch8" 
-    android:background="@drawable/stamp"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:visibility="invisible"
- />
-       <ImageView android:id="@+id/punch9" 
-    android:background="@drawable/stamp"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:visibility="invisible"
- />
-       
-        <ImageView android:id="@+id/punch10" 
-    android:background="@drawable/stamp"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:visibility="invisible"
- />
-    </TableRow>
-</TableLayout>
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/profile_Line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile_line" />
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     	 android:id="@+id/redeemPlaceList"
-         android:orientation="vertical"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-    android:background="@drawable/redeemable_box"
-    android:layout_above="@id/footer"
-    android:layout_below="@id/punches"
-         >
-     <ListView android:id="@android:id/list"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="20dp"
- 				android:clickable="true"
- 				android:cacheColorHint="@android:color/transparent"
-               android:drawSelectorOnTop="false"
-			android:background="@android:color/transparent"
-               />
+        <TextView
+            android:id="@+id/mostVisited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/userName"
+            android:layout_below="@+id/profile_Line"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:text=""
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-     <TextView android:id="@android:id/empty"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:textColor="@android:color/black"
-               android:text="No data"/>
- </LinearLayout>
+        <TextView
+            android:id="@+id/availableRedeems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/mostVisited"
+            android:layout_below="@id/mostVisited"
+            android:layout_marginTop="2dp"
+            android:text="5"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-<LinearLayout
-android:id="@+id/footer" 
-android:orientation="horizontal"
-android:layout_width="match_parent" 
-android:layout_height="80dp"
-android:layout_alignParentBottom="true"
->
-<Button
-android:id="@+id/btnScan"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_weight="1.0"
-android:onClick="ScanButtonHandler" 
-android:background="@drawable/scan"       
-       
-/>
-    
-<Button
-android:id="@+id/btnHome"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_weight="1.0"
-android:onClick="HomeButtonHandler" 
-android:background="@drawable/home"       
-/>
-    
+        <TextView
+            android:id="@+id/lastRedeem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/availableRedeems"
+            android:layout_below="@+id/availableRedeems"
+            android:text="Last Redeem:"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
-<Button
-android:id="@+id/btnPlaces"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_weight="1.0"
-android:onClick="PlacesButtonHandler"    
-android:background="@drawable/places"       
-    
-/>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/punches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/punches_box" >
 
-<Button
-android:id="@+id/btnSettings"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:layout_weight="1.0"
-android:onClick="SettingsButtonHandler" 
-android:background="@drawable/settings"       
-/>
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:stretchColumns="5" >
 
-</LinearLayout>
+            <TableRow>
+
+                <ImageView
+                    android:id="@+id/punch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stamp"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/punch2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stamp"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/punch3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stamp"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/punch4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stamp"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/punch5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stamp"
+                    android:visibility="invisible" />
+            </TableRow>
+
+            <TableRow>
+
+                <ImageView
+                    android:id="@+id/punch6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stamp"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/punch7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stamp"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/punch8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stamp"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/punch9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stamp"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/punch10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stamp"
+                    android:visibility="invisible" />
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/redeemPlaceList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/punches"
+        android:background="@drawable/redeemable_box"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:cacheColorHint="@android:color/transparent"
+            android:clickable="true"
+            android:drawSelectorOnTop="false" />
+
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No data"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnScan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/scan"
+            android:onClick="ScanButtonHandler" />
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/home"
+            android:onClick="HomeButtonHandler" />
+
+        <Button
+            android:id="@+id/btnPlaces"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/places"
+            android:onClick="PlacesButtonHandler" />
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/settings"
+            android:onClick="SettingsButtonHandler" />
+    </LinearLayout>
 
 </RelativeLayout>

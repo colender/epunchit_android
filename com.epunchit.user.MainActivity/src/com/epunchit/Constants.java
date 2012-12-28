@@ -5,14 +5,14 @@ public final class Constants {
 	public static final String API_KEY = "AIzaSyBrk2L5MkIWmIT-3VWNzPwVVFs-47dsLvU";
 	public static final String APP_NAME = "epunchit";
 	public static final String ACCOUNT_NAME = "user";
-	public static boolean DEBUG = true;
+	public static boolean DEBUG = false;
 	public static final String BASE_URL_PATH = "http://www.epunchit.com";
 	public static final String BASE_IMAGE_PATH = "https://www.epunchit.com/img/faces/";
 	
 	public static final String LOGIN_PATH = "https://epunchit.com/ajax/validateUserLogin.php";
 	public static final String CHANGE_PASSWORD_PATH="https://epunchit.com/ajax/setPassword.php";
 	public static final String CREATE_NEW_USER_PATH=
-		"https://epunchit.com/ajax/createUser.php";		
+		"https://epunchit.com/ajax/createUserDemo.php";		
 	
 	public static final String PASSWORD_RESET_EMAIL_PATH="https://epunchit.com/ajax/resetUserPassword.php";
 		
@@ -35,6 +35,6 @@ public final class Constants {
 		"https://epunchit.com/ajax/setUserFollow.php";
 	public static final String EP_USER_FAVORITE_PLACES_PATH = 
 		"https://epunchit.com/ajax/userGetFollowing-ajax.php";
-	public static final String EP_QRCODE_UPDATE_PATH = "https://epunchit.com/mobile/qrmobile.php?";
+	public static final String EP_QRCODE_UPDATE_PATH = "https://epunchit.com/mobile/qrmobile.php";
 	public static final String EP_QRCODE_REDEEM_PATH = "https://epunchit.com/mobile/qrredeem.php";
 }

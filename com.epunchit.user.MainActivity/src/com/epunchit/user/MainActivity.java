@@ -28,8 +28,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -41,6 +43,10 @@ import com.epunchit.utils.LauncherUtils;
 import com.epunchit.utils.Utils;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.urbanairship.AirshipConfigOptions;
+import com.urbanairship.UAirship;
+import com.urbanairship.push.PushManager;
+import com.urbanairship.Logger;
 
 public class MainActivity extends ListActivity {
 	UserPlacesResultReceiver userPlacesResultReceiver	= null;
@@ -58,12 +64,13 @@ public class MainActivity extends ListActivity {
         TextView codeButton = (TextView)findViewById(R.id.redeemCode);
         codeButton.setText("Redeem Code");
         codeButton.setTextColor(getResources().getColor(R.color.epunchit_blue));
-    	if(!Utils.isUserSignedIn(this))
+    	if(!Utils.isUserSignedIn(this) || !Utils.isThereInternetConnection(getApplicationContext()))
     	{
         	LauncherUtils.launchActivity(R.layout.login, this, null);
         	return;
         }
     	//Utils.init(this);
+    	getUserData();
     }
     
     @Override
@@ -72,6 +79,26 @@ public class MainActivity extends ListActivity {
     	super.onStart();
 		progressBar = ProgressDialog.show(this, "Retrieving data", "Please wait...");
     	getUserData();
+    }
+    
+    @Override
+    protected void onDestroy() {
+    super.onDestroy();
+
+    unbindDrawables(findViewById(R.id.main));
+    System.gc();
+    }
+
+    private void unbindDrawables(View view) {
+        if (view.getBackground() != null) {
+        view.getBackground().setCallback(null);
+        }
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+            unbindDrawables(((ViewGroup) view).getChildAt(i));
+            }
+        ((ViewGroup) view).removeAllViews();
+        }
     }
     
     public void ScanButtonHandler(View view) {
@@ -92,8 +119,6 @@ public class MainActivity extends ListActivity {
             		 String format = scanResult.getFormatName();
             		 
             		 Map<String,String> contents = parseContent(content);
-            		 
-            		 
             		 confirmActionDialog("Content Being Sent",contents,content);
             	 }            	
             } else if (resultCode == RESULT_CANCELED) {
@@ -143,17 +168,20 @@ public class MainActivity extends ListActivity {
 		//String text = "Please confirm:"+content;
 		String place = "Place: " + contents.get("place") + "\n";
 		String points;
+		String msg;
 		if(contents.get("type") != null && contents.get("type").equalsIgnoreCase("redeem")){ 
-			 points = "You are going to Redeem \n";
+			msg = "You are going to use a Redeem would you like to continue?";
+			points = "<br /><font color='#90EE90'>*Please make sure to show cashier that Redeem was successful.</font>\n";
 		}else { 
+			msg = "Do you want to add point";
 			points = "Points: " + contents.get("point") + "\n";
 		}
 		
 		
-		String msg = "Do you want to add point or redeem";
-		strB.append(msg+place + points);
+		
+		strB.append(msg + points);
 		alert.setTitle(title);
-		alert.setMessage(strB.toString());
+		alert.setMessage(Html.fromHtml(strB.toString()));
 		Log.d(TAG,strB.toString());
 		alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int whichButton) {
@@ -370,8 +398,18 @@ public class MainActivity extends ListActivity {
 					JSONObject json = new JSONObject(responseString);
 					String success = json.getString("Success");
 					if(success.equalsIgnoreCase("true")){
-						getUserData();
-						confirmationDialog("Success","Your points have been added");
+						
+						String type = json.getString("type");
+						if(type.equalsIgnoreCase("redeem")){ 
+							String body = getString(R.string.redeem_success);
+							
+							getUserData();
+							confirmationRedeemDialog("Redeem Success", body);
+						}else { 
+							getUserData();
+							confirmationDialog("Success","Your points have been added");
+						}
+						
    	        	}else {
 						String errormsg = json.getString("Error");
 						 Log.d("UserUpdateResultReciver:error msg:", errormsg);
@@ -386,6 +424,27 @@ public class MainActivity extends ListActivity {
         }
     }
 
+	
+	
+	
+	public void confirmationRedeemDialog(String title,String bodymsg){ 
+		
+		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		alert.setTitle(title);
+		alert.setIcon(android.R.drawable.ic_dialog_info);
+		alert.setMessage(Html.fromHtml(bodymsg));
+		alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+	        	onStart();
+       		 }
+		});
+		alert.show();
+		
+		
+		
+	}
+	
+	
     public void confirmationDialog(final String text,final String message)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -479,7 +538,8 @@ public class MainActivity extends ListActivity {
   					txtView = (TextView) findViewById(R.id.mostVisited);
   					txtView.setText("Most Visited:"+userProfile.getString("mostVisited"));
   					String redeemCode = userProfile.getString("redeemCode");
-  					Log.d(TAG,redeemCode);
+  					txtView = (TextView) findViewById(R.id.lastRedeem);
+  					txtView.setText("Last Redeem: " + userProfile.getString("lastRedeem") );
   					Button btnView = (Button) findViewById(R.id.redeemCode);
   					if(!redeemCode.equalsIgnoreCase("0"))
   					{
@@ -531,4 +591,6 @@ public class MainActivity extends ListActivity {
         	return 0;
         }
     }
+	
+	 
 }

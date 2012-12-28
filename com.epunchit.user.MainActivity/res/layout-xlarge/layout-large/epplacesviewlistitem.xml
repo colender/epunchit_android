@@ -20,12 +20,12 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/imgIcon"
         android:paddingLeft="5dp"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:textColor="@color/epunchit_blue"
+        android:textSize="18sp"
         android:focusableInTouchMode="false"
 		android:clickable="false"
-		android:focusable="false" />
+		android:focusable="false" 
+		android:layout_marginTop="5dp"/>
 
     <Button
         android:id="@+id/imgFollow"
@@ -40,13 +40,13 @@
         android:id="@+id/txtDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/imgFollow"
-        android:layout_alignBottom="@+id/imgFollow"
-        android:layout_toRightOf="@+id/imgIcon"
+        android:layout_alignLeft="@+id/txtTitle"
+        android:layout_below="@+id/txtTitle"
         android:paddingLeft="5dp"
-        android:textColor="@android:color/black"
+       
+        android:textColor="@color/black"
         android:textSize="12sp"
-        android:textStyle="bold" />
+        android:typeface="sans" />
 
 </RelativeLayout>
 <!-- 
